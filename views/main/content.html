@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% for content in contents %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p class="h1 p-lg">{{content.title}}</p>
+	</div>
+	<div class="panel-body">
+		<p>{{content.description}}</p>
+		{% if userInfo %}
+		<a class="btn btn-info look-content" href="/view?contentid={{content.id}}">阅读全文</a>
+		{% else %}
+		<a class="btn btn-warning unlogin-btn">阅读全文</a>
+		{% endif %}
+	</div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-md-3"><span>作者：{{content.user.username}}</span></div>
+			<div class="col-md-3"><span>{{content.addTime|date('Y年m月d日 H:i:s', -8*60)}}</span></div>
+			<div class="col-md-3"><span>评论：{{content.comments.length}}条</span></div>
+			<div class="col-md-3"><span>观看：{{content.view}}次</span></div>
+		</div>
+	</div>
+</div>
+{% endfor %}
+<div class="panel panel-default">
+	<div class="panel-body ">
+		<div class="row">
+			<div class="col-xs-4 col-sm-3">
+				{% if page <= 1 %} <button type="button" class="btn btn-primary noprev ">上一页</button>
+					{% else %}
+					<a href="{{location.pathname}}?category={{category}}&page={{page-1}}" class="btn btn-primary ">上一页</a>
+					{% endif %}
+			</div>
+			{% if pages > 0 %}
+			<div class="col-xs-4 col-sm-6 text-center">
+				<span class="spantop">{{page}}/{{pages}}</span>
+			</div>
+			{% endif %}
+			<div class="col-xs-4 col-sm-3 text-right">
+				{% if page >= pages %}
+				<button type="button" class="btn btn-primary nonext ">下一页</button>
+				{% else %}
+				<a href="{{lcoation.pathname}}?category=={{category}}&page={{page-1}}" class="btn btn-primary ">下一页</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

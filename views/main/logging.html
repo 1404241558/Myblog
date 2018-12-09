@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录|注册页面</title>
+		<!-- 引入css样式 -->
+		<link rel="stylesheet" type="text/css" href="/public/css/logging.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css" />
+		<script src="/public/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>	
+	</head>
+	<body>
+		<div class="container login">
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<form class="form-horizontal">
+						<span class="heading">用户登录</span>
+						<div class="form-group">
+							<input type="email" class="form-control" id="username" placeholder="用户名或电子邮件">
+							<i class="fa fa-user"></i>
+						</div>
+						<div class="form-group help">
+							<input type="password" class="form-control" id="password" placeholder="密　码">
+							<i class="fa fa-lock"></i>
+							<a href="#" class="fa fa-question-circle"></a>
+						</div>
+						<div class="form-group">
+							<div class="main-checkbox">
+								<input type="checkbox" value="None" id="checkbox1" name="check" />
+								<label for="checkbox1" id="remember"></label>
+							</div>
+							<span class="text">Remember me</span>
+							<span class="login-tips"></span>
+							<!-- 这个在form表单中，如果不指定类型的话，默认是submit，会刷新表单。非常重要 -->
+							<button  type="button" class="btn btn-default" id="register-btn">注册</button>
+							<button  type="button" class="btn btn-default" id="login-btn">登录</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container hidden register">
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<form class="form-horizontal">
+						<span class="heading">用户登录</span>
+						<div class="form-group">
+							<input type="email" class="form-control" id="register-username" placeholder="用户名或电子邮件">
+							<i class="fa fa-user"></i>
+						</div>
+						<div class="form-group help">
+							<input type="password" class="form-control" id="register-password" placeholder="密　码">
+							<i class="fa fa-lock"></i>
+							<a href="#" class="fa fa-question-circle"></a>
+						</div>
+						<div class="form-group help">
+							<input type="password" class="form-control" id="repeat-password" placeholder="请重新确认密码">
+							<i class="fa fa-lock"></i>
+							<a href="#" class="fa fa-question-circle"></a>
+						</div>
+						<div class="form-group">
+							<span class="register-tips">完成注册即可登录浏览</span>
+							<!-- 这个在form表单中，如果不指定类型的话，默认是submit，会刷新表单。非常重要 -->
+							<button  type="button" class="btn btn-default" id="register-out-btn">取消</button>
+							<button  type="button" class="btn btn-default" id="register-enter-btn">注册</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+		<script src="/public/js/index.js" type="text/javascript" charset="utf-8"></script>	
+</html>

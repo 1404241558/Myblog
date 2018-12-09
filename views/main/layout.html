@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>MyBlog</title>
+		<!-- 引入bootstrap框架-->
+		<link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/toastr.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/main.css" />
+	</head>
+	<body>
+		<!-- 巨幕 -->
+		<div class="jumbotron">
+			<div class="container text-center">
+				<!-- <img src="../../public/images/第一张.jpg" class="img-responsive"> -->
+				<h1>欢迎进入我的博客</h1>
+				<br><br><br>
+				<p class="white">我的个人学习网站</p>
+				<p><a  class="btn btn-info resume">我的个人简历</a></p>
+			</div>
+		</div>
+		<!-- 导航菜单 -->
+		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="" class="navbar-brand">MyBlog</a>
+					<button class="navbar-toggle collapsed" data-target="#menu" data-toggle="collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="menu">
+					<!-- 导航条首页 -->
+					<ul class="nav navbar-nav">
+						{% if category == '' %}
+						<li><a href="/">首页</a></li>
+						{% else %}
+						<li><a href="/">首页</a></li>
+						{% endif %}
+						{% for cate in categories %}
+						{% if category == cate.id %}
+						<li><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
+						{% else %}
+						<li><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
+						{% endif %}
+						{% endfor %}
+					</ul>
+					<!-- 注册登录 -->
+					<ul class="nav navbar-nav navbar-right">
+						<!-- 登录成功 -->
+						{% if userInfo.isAdmin === true %}
+						<li><a class="btn btn-default btn-padding">{{userInfo.username}}</a></li>
+						<li><a class="btn btn-default btn-padding login-out">退出</a></li>
+						<li><a href="/admin" class="btn btn-default btn-padding">后台管理页面</a></li>
+						{% elseif userInfo %}
+						<li><a class="btn btn-default btn-padding">{{userInfo.username}}</a></li>
+						<li><a class="btn btn-default btn-padding login-out">退出</a></li>
+						{% else %}
+						<li><a href="/login" class="btn btn-default btn-padding">登录</a></li>
+						<li><a href="/login" class="btn btn-default btn-padding">注册</a></li>
+						{% endif %}
+					</ul>
+					<!-- 搜索框 -->
+					<form action="" class="navbar-form navbar-right">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="请输入要搜索的内容">
+							<div class="input-group-btn">
+								<button class="btn btn-primary">搜索</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</nav>
+		<!-- 导航菜单结束 -->
+		<!-- 中间内容页页面 -->
+		<div class="container-fluid main-content">
+			<div class="row">
+				<!-- 折叠面板 -->
+				<div class="col-md-2">
+					<div class="panel-group" id="accordion">
+						{% for cate in categories %}
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#{{cate.id}}">
+										{{cate.name}}
+									</a>
+								</h4>
+							</div>
+							<div id="{{cate.id}}" class="panel-collapse collapse">
+								{% for content in contents %}
+								{% if content.category.id == cate.id %}
+								<div class="panel-body">
+									<a href="/?category={{cate.id}}">{{content.title}}</a>
+								</div>
+								{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				<!-- 主体内容页 -->
+				<div class="col-md-8">
+					<!-- 内容面板开始 -->
+					{% block content %} {% endblock %}
+					
+				</div>
+				<!-- 内容面板结束 -->
+				<!-- 日历、时间小插件 -->
+				<div class="col-md-2 text-center hidden-sm hidden-xs">
+					<div class="time">
+						<canvas id="canvas" width="260" height="300">ccc</canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="/public/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/public/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/public/js/toastr.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/public/js/time.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/public/js/btnclick.js" type="text/javascript" charset="utf-8"></script>
+</html>

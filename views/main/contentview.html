@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% if userInfo %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p class="h1 p-lg">{{content.title}}</p>
+	</div>
+	<div class="panel-body">
+		<p>{{content.description}}</p>
+		<p>{{content.content}}</p>
+	</div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-md-3 "><span>作者：{{content.username}}</span></div>
+			<div class="col-md-3"><span>{{content.addTime|date('Y年m月d日 H:i:s', -8*60)}}</span></div>
+			<div class="col-md-3"><span>评论：{{content.comments.length}}条</span></div>
+			<div class="col-md-3"><span>观看：{{content.view}}次</span></div>
+		</div>
+	</div>
+</div>
+<!-- 发表评论框开始 -->
+<div class="input-group">
+	<input type="text" class="form-control input-lg comment-area" placeholder="请输入要发表的内容">
+	<input type="hidden" class="contentId" value="{{content._id.toString()}}" />
+	<div class="input-group-btn">
+		<button class="btn btn-default btn-block btn-lg Send">Send</button>
+	</div>
+</div>
+<br />
+<!-- 发表评论框结束 -->
+<!-- 评论区域开始 -->
+<div class="panel panel-default p-lg">
+	<div class="penel-heading">
+		<div class="row">
+			<div class="col-md-6 col-xs-6">
+				<h1>评论板</h1>
+			</div>
+			<div class="col-md-6 col-xs-6 text-right">
+				<button class="btn-middle btn btn-info btn-lg">打开面板</button>
+			</div>
+		</div>
+	</div>
+	{% for commentsInfo in content.comments|reverse %}
+	<div class="panel-body comment collapse">
+		<p>评论人：{{commentsInfo.username}}</p>
+		<p>时间：{{commentsInfo.postTime|date('Y年m月d日 H:i:s', -8*60)}}</p>
+		<p>{{commentsInfo.content}}</p>
+		<hr>
+	</div>
+	{% endfor %}
+	<div class="panel-footer text-center">
+		<p>一共有{{content.__v}}条评论</p>
+	</div>
+</div>
+<!-- 评论区域结束 -->
+{% endif %}
+{% endblock %}

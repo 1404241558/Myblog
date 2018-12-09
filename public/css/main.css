@@ -1,0 +1,62 @@
+html,
+body {
+	width: 100%;
+	height: 5000px;
+	background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+body {
+	padding-top: 51px;
+}
+
+.btn-middle {
+	position: relative;
+	top: 12px;
+	right: 22px;
+}
+
+h1 {
+	position: relative;
+	top: -3px;
+	left: 22px;
+}
+
+.spantop {
+	position: relative;
+	top: 8px
+}
+
+.main-content {
+	/* background: #eee; */
+	/* margin-top: -30px; */
+}
+
+.p-lg {
+	position: relative;
+	top: -4px;
+}
+
+.jumbotron {
+	background: url(../images/第一张.jpg);
+	background-size: 100%;
+}
+
+.white {
+	color: white;
+}
+
+.time {
+	position: relative;
+	/* 	top: 60px;
+	right: 5px; */
+}
+
+.btn-padding {
+	height: 34px;
+	top: 8px;
+	margin-right: 10px;
+}
+
+.navbar-nav>li>.btn-padding {
+	line-height: 4px;
+}
